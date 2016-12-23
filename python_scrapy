@@ -1,0 +1,22 @@
+先开始一个工程：
+  scrapy startproject tutorial
+
+跑到spiders:
+  创建一个叫：dmoz_spide.py
+代码：
+import scrapy
+class DmozSpider(scrapy.Spider):
+    name = 'dmoz'
+    allowded_domains =['dmoz.org']
+    start_urls = ['http://www.dmoz.org/Computers/Programming/Languages/Python/Books/'
+       ,     'http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/']
+    def parse(self,response):
+        filename = response.url.split('/')[-3]
+        with open (filename,'wb')as f :
+            f.write(response.body)
+
+
+然后运行： scrapy crawl dmoz
+
+
+ 
